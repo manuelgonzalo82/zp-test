@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Zooplus Test - Check</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/check.css}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<form th:action="@{/logout}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Logout</button>
+</form>
+
+<div class="container">
+    <div class="historical-box">
+        <h3>Historical requests</h3>
+        <table>
+            <tr th:each="hr : ${historicalRecordList}">
+                <td th:text="${#dates.format(hr.recordTime, 'dd-MMM-yyyy HH:mm:ss')}"></td>
+                <td th:text="${hr.sourceCurrency}"></td> <td th:text="${hr.rate}"></td> <td th:text="${hr.wantedCurrency}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+    <form th:action="@{/currency/check}" method="POST" class="form-check">
+        <h3 class="form-check-heading">Get conversion</h3>
+        <br/>
+
+        <div class="form-row">
+            <label class="col-sm-5 control-label">From:</label>
+            <div class="col-sm-7">
+                <select class="form-control" id="sourceCurrency" name="sourceCurrency">
+                    <option th:each="currency : ${allCurrencies}"
+                            th:value="${currency}"
+                            th:text="${currency}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label class="col-sm-5 control-label">To:</label>
+            <div class="col-sm-7">
+                <select class="form-control" id="wantedCurrency" name="wantedCurrency">
+                    <option th:each="currency : ${allCurrencies}"
+                        th:value="${currency}"
+                        th:text="${currency}"></option>
+                </select>
+             </div>
+        </div>
+
+        <div align="center" th:if="${customError}">
+            <p style="font-size: 20; color: #FF1C19;">Internal error, please try again</p>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Convert" type="Submit" th:text="Convert"></button>
+
+        <div class="form-row">
+            <label class="control-label">Result: </label>&nbsp;<span th:utext="${value}"></span>
+        </div>
+    </form>
+</div>
+</body>
+</html>

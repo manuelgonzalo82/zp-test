@@ -1,0 +1,41 @@
+.form-check {
+    max-width: 420px;
+    padding: 30px 38px 66px;
+    margin: 20px auto 0;
+    background-color: #eee;
+    border: 3px dotted rgba(0,0,0,0.1);
+}
+
+.form-check-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+}
+
+.form-row {
+    padding: 20px;
+    margin: 20px;
+}
+
+.historical-box {
+    max-width: 420px;
+    padding: 30px 38px 66px;
+    margin: 20px auto 0;
+    background-color: #eee;
+    border: 3px dotted rgba(0,0,0,0.1);
+}
+
+.historical-box h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.historical-box td, th {
+    padding: 8px;
+}

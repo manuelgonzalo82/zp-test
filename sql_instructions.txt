@@ -1,0 +1,4 @@
+# TO ALLOW REGISTRATION
+insert into role (id, role) values (1, 'USER');
+# TO ALLOW FURTHER ADMINISTRATION
+insert into role (id, role) values (2, 'ADMIN');

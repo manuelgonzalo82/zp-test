@@ -21,22 +21,6 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Autowired
     private InMemoryCache<String, Float> externalRequestsCache;
 
-    /*
-    @Override
-    public String getChange() {
-        String key = "USDEUR";
-        String value = getChangeFromCache(key);
-
-        if (value == null) {
-            value = getChangeFromApi();
-            if (value != null) {
-                setChangeInCache(key, value);
-            }
-        }
-        return value;
-    }
-    */
-
     @Override
     public Float getChange(String sourceCurrency, String wantedCurrency) {
         String key = sourceCurrency + wantedCurrency;
@@ -68,17 +52,6 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
         }
 
-
-/*
-        String valueSource = getChangeFromApi()
-
-        if (value == null) {
-            value = getChangeFromApi(sourceCurrency, wantedCurrency);
-            if (value != null) {
-                setChangeInCache(key, value);
-            }
-        }
-*/
         return value;
     }
 
@@ -92,24 +65,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         externalRequestsCache.put(key, value);
         System.out.println("setChangeFromCache: " + key + " -> " + value);
     }
-
-    /*
-    private String getChangeFromApi() {
-        RestTemplate restTemplate = new RestTemplate();
-        String BASE_URL = "http://apilayer.net";
-        URI targetUrl= UriComponentsBuilder.fromUriString(BASE_URL)
-                .path("/api/live")
-                .queryParam("access_key", "59614587616356c067d51ef17e649073")
-                .queryParam("format", "1")
-                .queryParam("currencies", "USD,AUD,CAD,PLN,EUR")
-                .build()
-                .encode()
-                .toUri();
-        CurrencyLayerObject clo = restTemplate.getForObject(targetUrl, CurrencyLayerObject.class);
-        System.out.println("Asking currency");
-        return clo.getQuotes().get("USDEUR");
-    }
-    */
 
     private Map<String, Float> getChangeFromApi(String sourceCurrency, String wantedCurrency) {
         RestTemplate restTemplate = new RestTemplate();

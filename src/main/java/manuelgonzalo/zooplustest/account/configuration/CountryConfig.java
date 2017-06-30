@@ -3,6 +3,7 @@ package manuelgonzalo.zooplustest.account.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
+import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
 import java.util.LinkedHashMap;
@@ -10,7 +11,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by manuel on 29/6/17.
  */
-@ManagedResource
+@ManagedResource(objectName = "ZooplusTest:name=CountryConfig")
 @Configuration
 public class CountryConfig {
     private LinkedHashMap<String, String> map;
@@ -46,13 +47,8 @@ public class CountryConfig {
         return map;
     }
 
-    @ManagedAttribute
+    @ManagedOperation
     public void addCountryMap(String twoLetters, String name) {
         map.put(twoLetters, name);
-    }
-
-    @ManagedAttribute
-    public void setCountryMap(LinkedHashMap<String, String> map) {
-        this.map = map;
     }
 }

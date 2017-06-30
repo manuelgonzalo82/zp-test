@@ -3,6 +3,7 @@ package manuelgonzalo.zooplustest.currency.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jmx.export.annotation.ManagedAttribute;
+import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by manuel on 29/6/17.
  */
-@ManagedResource
+@ManagedResource(objectName = "ZooplusTest:name=CurrenciesConfig")
 @Configuration
 public class CurrenciesConfig {
     private List<String> allCurrencies;
@@ -35,6 +36,11 @@ public class CurrenciesConfig {
     @ManagedAttribute
     public List<String> getAllCurrencies() {
         return allCurrencies;
+    }
+
+    @ManagedOperation
+    public void addCurrency(String name) {
+        allCurrencies.add(name);
     }
 
 }

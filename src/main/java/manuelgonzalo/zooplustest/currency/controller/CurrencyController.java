@@ -105,21 +105,4 @@ public class CurrencyController {
     private List<HistoricalRecord> getHistoricalRecordList() {
         return historicalRecordService.getLastHistoricalRecords(10);
     }
-
-    /*
-    private List<String> getCurrencyList() {
-        List<String> allCurrencies = new ArrayList<String>();
-        allCurrencies.add("AUD");
-        allCurrencies.add("CAD");
-        allCurrencies.add("CHF");
-        allCurrencies.add("EUR");
-        allCurrencies.add("GBP");
-        allCurrencies.add("HUF");
-        allCurrencies.add("JPY");
-        allCurrencies.add("NZD");
-        allCurrencies.add("USD");
-        allCurrencies.add("ZAR");
-        return allCurrencies;
-    }
-    */
 }
